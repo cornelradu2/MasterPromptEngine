@@ -66,18 +66,18 @@ MasterPromptEngine runs entirely on your hardware. No API keys, no telemetry, ze
 
 ### 1. Initialize Ollama Container
 ```bash
-docker run -d -p 7860:11434 --name agente_segreto_main ollama/ollama:latest
+docker run -d -p 7860:11434 --name masterpromptengine_ollama ollama/ollama:latest
 ```
 
 ### 2. Create Custom Model with Extended Context
 We use a custom **Qwen3 8B** model with 64k context window and thinking template.
 ```bash
 # Pull base model
-docker exec -it agente_segreto_main ollama pull hf.co/unsloth/Qwen3-8B-128K-GGUF:Q4_K_M
+docker exec -it masterpromptengine_ollama ollama pull hf.co/unsloth/Qwen3-8B-128K-GGUF:Q4_K_M
 
 # Create custom model from Modelfile
-docker cp Modelfile.qwen3-64k agente_segreto_main:/tmp/
-docker exec -it agente_segreto_main ollama create qwen3-8b-64k-custom:latest -f /tmp/Modelfile.qwen3-64k
+docker cp Modelfile.qwen3-64k masterpromptengine_ollama:/tmp/
+docker exec -it masterpromptengine_ollama ollama create qwen3-8b-64k-custom:latest -f /tmp/Modelfile.qwen3-64k
 ```
 
 ### 3. Launch MasterPromptEngine
