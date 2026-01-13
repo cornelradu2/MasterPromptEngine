@@ -1,0 +1,5 @@
+{
+  "name": "MasterPromptEngine",
+  "description": "Un'intelligenza agentica basata sul framework MAKER. Decompone problemi complessi e impara automaticamente dai vincoli utente salvandoli nella memoria sacra.",
+  "requestFramePermissions": []
+}

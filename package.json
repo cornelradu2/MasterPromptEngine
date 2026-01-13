@@ -1,0 +1,26 @@
+{
+  "name": "masterpromptengine",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "lucide-react": "^0.554.0",
+    "mammoth": "1.7.1",
+    "markdown-to-jsx": "7.5.0",
+    "pdfjs-dist": "4.0.379",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
