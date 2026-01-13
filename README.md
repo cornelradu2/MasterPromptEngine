@@ -69,10 +69,15 @@ MasterPromptEngine runs entirely on your hardware. No API keys, no telemetry, ze
 docker run -d -p 7860:11434 --name agente_segreto_main ollama/ollama:latest
 ```
 
-### 2. Pull the Target Model
-We recommend **Qwen3 4B Instruct** for the best balance of speed and reasoning.
+### 2. Create Custom Model with Extended Context
+We use a custom **Qwen3 8B** model with 64k context window and thinking template.
 ```bash
-docker exec -it agente_segreto_main ollama pull qwen3:4b-instruct
+# Pull base model
+docker exec -it agente_segreto_main ollama pull hf.co/unsloth/Qwen3-8B-128K-GGUF:Q4_K_M
+
+# Create custom model from Modelfile
+docker cp Modelfile.qwen3-64k agente_segreto_main:/tmp/
+docker exec -it agente_segreto_main ollama create qwen3-8b-64k-custom:latest -f /tmp/Modelfile.qwen3-64k
 ```
 
 ### 3. Launch MasterPromptEngine
@@ -83,9 +88,10 @@ npm run dev
 Access the IDE at `http://localhost:3000`.
 
 ## ⚙️ Technical Specifications
-- **Model**: `qwen3:4b-instruct` (Optimized for 128k context)
-- **Context Window**: 131,072 tokens
-- **Temperature**: 0.25 (Deterministic precision)
+- **Model**: `qwen3-8b-64k-custom:latest` (8B params, YaRN 128K base with thinking template)
+- **Context Window**: 65,536 tokens (configurable up to 128K)
+- **Temperature**: 0.6 (Balanced creativity/precision)
+- **Quantization**: Q4_K_M (4-bit mixed precision)
 - **Storage**: IndexedDB (Files) + LocalStorage (Metadata)
 
 ---
